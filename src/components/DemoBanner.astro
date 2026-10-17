@@ -1,0 +1,13 @@
+---
+import type { Brand } from "../lib/schema.ts";
+import agency from "../../agency.json";
+interface Props { b: Brand }
+const { b } = Astro.props;
+const text = agency.bannerText.replace("{business}", b.business.name).replace("{agency}", agency.name);
+---
+<div id="demo-banner" class="relative z-50 bg-slate-950 px-10 py-2 text-center text-xs text-slate-300 sm:text-sm">
+  <span>{text}</span>
+  {agency.website && <a href={agency.website} class="ml-1 font-semibold text-white underline underline-offset-2" target="_blank" rel="noopener">Get in touch →</a>}
+  <button type="button" aria-label="Dismiss" class="absolute right-1 top-1/2 grid size-10 -translate-y-1/2 place-items-center rounded text-slate-400 hover:text-white"
+    onclick="this.parentElement.remove()">✕</button>
+</div>

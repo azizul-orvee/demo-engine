@@ -1,0 +1,24 @@
+---
+import type { Brand } from "../lib/schema.ts";
+import Icon from "./Icon.astro";
+interface Props { b: Brand }
+const { b } = Astro.props;
+const o = b.offer;
+---
+{o && (
+  <section class="bg-paper">
+    <div class="container-x grid gap-12 py-20 sm:py-28 lg:grid-cols-12 lg:items-end lg:gap-16">
+      <div class="reveal lg:col-span-7">
+        <p class="sec-label">Offer</p>
+        <h2 class="h2 tnum mt-5">{o.title}</h2>
+        <p class="lead mt-5 max-w-xl">{o.text}</p>
+        <a href="#quote" class="btn-accent mt-9 text-base">{b.hero.primaryCta} <Icon name="arrow" class="size-4" /></a>
+      </div>
+      {o.points.length > 0 && (
+        <ul class="rule-t lg:col-span-5">
+          {o.points.map((p) => <li class="rule-b flex gap-3.5 py-4"><span class="mt-[0.85em] h-px w-4 shrink-0 bg-accent-deep"></span>{p}</li>)}
+        </ul>
+      )}
+    </div>
+  </section>
+)}

@@ -1,0 +1,53 @@
+---
+import type { Brand } from "../lib/schema.ts";
+import Icon from "./Icon.astro";
+interface Props { b: Brand }
+const { b } = Astro.props;
+const r = b.reviews;
+const [first, ...rest] = r.items.slice(0, 6);
+const meta = (t: (typeof r.items)[number]) => [t.location, t.source].filter(Boolean).join(" · ");
+---
+{(r.items.length > 0 || r.rating) && (
+  <section id="reviews" class="section scroll-mt-20">
+    <div class="container-x">
+      <p class="sec-label">Reviews</p>
+      <div class="mt-5 flex flex-col justify-between gap-8 md:flex-row md:items-end">
+        <h2 class="h2">What our customers say</h2>
+        {r.rating && (
+          <div class="flex items-center gap-5">
+            <span class="tnum font-heading text-6xl leading-none text-ink">{r.rating.toFixed(1)}</span>
+            <span>
+              <span class="flex gap-0.5 text-accent-deep">{[1, 2, 3, 4, 5].map(() => <Icon name="star" class="size-3.5" fill />)}</span>
+              <span class="mt-1.5 block text-sm text-muted">{r.count ? `${r.count} reviews` : "Average rating"}{r.source ? ` on ${r.source}` : ""}</span>
+            </span>
+          </div>
+        )}
+      </div>
+      {first && (
+        <figure class="rule-t mt-14 pt-12">
+          <div class="reveal grid gap-8 lg:grid-cols-12">
+            <blockquote class="font-heading italic text-ink lg:col-span-9" style="font-size:clamp(1.6rem,1.1rem + 1.6vw,2.6rem);line-height:1.25">“{first.text}”</blockquote>
+            <figcaption class="lg:col-span-3 lg:pt-3">
+              <span class="flex gap-0.5 text-accent-deep">{Array.from({ length: Math.round(first.rating) }).map(() => <Icon name="star" class="size-3.5" fill />)}</span>
+              <span class="mt-4 block font-medium text-ink">{first.name}</span>
+              <span class="text-sm text-muted">{meta(first)}</span>
+            </figcaption>
+          </div>
+        </figure>
+      )}
+      {rest.length > 0 && (
+        <div class:list={["mt-16 grid gap-x-12 gap-y-14 md:grid-cols-2", rest.length % 2 === 0 ? "lg:gap-x-20" : "lg:grid-cols-3"]}>
+          {rest.map((t) => (
+            <figure class="rule-t pt-7">
+              <div class="reveal flex h-full flex-col">
+                <span class="flex gap-0.5 text-accent-deep">{Array.from({ length: Math.round(t.rating) }).map(() => <Icon name="star" class="size-3" fill />)}</span>
+                <blockquote class="mt-5 flex-1 text-ink">“{t.text}”</blockquote>
+                <figcaption class="mt-6 text-sm"><span class="font-medium text-ink">{t.name}</span>{meta(t) && <span class="text-muted"> · {meta(t)}</span>}</figcaption>
+              </div>
+            </figure>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+)}

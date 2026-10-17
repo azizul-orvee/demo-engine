@@ -1,0 +1,25 @@
+---
+import type { Brand } from "../lib/schema.ts";
+interface Props { b: Brand }
+const { b } = Astro.props;
+const q = b.business.address ?? b.business.postcode ?? b.serviceArea[0];
+---
+{b.serviceArea.length > 0 && (
+  <section id="areas" class="section scroll-mt-20">
+    <div class="container-x grid gap-14 lg:grid-cols-12 lg:gap-20">
+      <div class="lg:col-span-5">
+        <p class="sec-label">Areas</p>
+        <h2 class="h2 mt-5">Areas we cover</h2>
+        <p class="lead mt-5">{b.serviceArea[0]} and the surrounding areas. Not sure if we reach you? Give us a call.</p>
+        <ul class="rule-t mt-10 grid grid-cols-2 gap-x-8">
+          {b.serviceArea.map((a) => <li class="rule-b py-3 text-[15px] font-medium">{a}</li>)}
+        </ul>
+      </div>
+      {q && (
+        <iframe title={`Map of ${b.serviceArea[0]}`} loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          class="h-80 w-full border border-rule grayscale-[0.9] transition duration-700 hover:grayscale-0 lg:col-span-7 lg:h-full lg:min-h-[420px]"
+          src={`https://maps.google.com/maps?q=${encodeURIComponent(q)}&z=10&output=embed`}></iframe>
+      )}
+    </div>
+  </section>
+)}

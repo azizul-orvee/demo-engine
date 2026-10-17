@@ -1,0 +1,206 @@
+{
+  "slug": "sample-northgate-heating",
+  "niche": "heating",
+  "sourceUrl": "https://example.com (fictional sample client)",
+  "business": {
+    "name": "Northgate Heating & Gas Ltd",
+    "shortName": "Northgate Heating",
+    "phone": "0113 496 0123",
+    "email": "hello@northgate-heating.example",
+    "address": "14 Kirkstall Road, Leeds LS4 2AB",
+    "postcode": "LS4 2AB",
+    "hours": [
+      {
+        "days": "Mon – Fri",
+        "time": "7:30am – 6pm"
+      },
+      {
+        "days": "Saturday",
+        "time": "8am – 2pm"
+      },
+      {
+        "days": "Emergencies",
+        "time": "7 days a week"
+      }
+    ],
+    "companyNumber": "01234567",
+    "gasSafeNumber": "123456",
+    "yearEstablished": 2009
+  },
+  "brand": {
+    "logo": "logo.svg",
+    "logoOnDark": "logo-on-dark.svg",
+    "colors": {
+      "primary": "#2b3a33",
+      "dark": "#15130f",
+      "accent": "#d6b98a"
+    },
+    "headingFont": "Newsreader",
+    "bodyFont": "Hanken Grotesk"
+  },
+  "hero": {
+    "eyebrow": "Gas Safe registered engineers in Leeds",
+    "headline": "Considered heating for Leeds homes.",
+    "subheadline": "Boiler installations, servicing and repairs, carried out by engineers who treat your home as carefully as their own. Fixed prices, agreed before we start.",
+    "primaryCta": "Request a quote",
+    "bullets": [
+      "Same-day emergency callouts",
+      "Fixed prices, no surprises",
+      "Up to 12-year boiler warranties",
+      "Finance available on new boilers"
+    ]
+  },
+  "emergency": {
+    "enabled": true,
+    "text": "No heating or hot water? Same-day callouts across Leeds."
+  },
+  "accreditations": [
+    "Gas Safe Registered",
+    "Worcester Bosch Accredited",
+    "Checkatrade",
+    "Which? Trusted Trader"
+  ],
+  "stats": [
+    {
+      "value": "15+",
+      "label": "Years keeping Leeds warm"
+    },
+    {
+      "value": "4,200+",
+      "label": "Boilers serviced & repaired"
+    },
+    {
+      "value": "4.9★",
+      "label": "Average Google rating"
+    },
+    {
+      "value": "Same day",
+      "label": "Emergency callouts"
+    }
+  ],
+  "services": [
+    {
+      "title": "New boiler installation",
+      "icon": "flame",
+      "description": "A-rated combi, system and regular boilers from Worcester Bosch and Vaillant, fitted in a day with up to 12 years' warranty."
+    },
+    {
+      "title": "Boiler repairs",
+      "icon": "wrench",
+      "description": "Fault codes, low pressure, no hot water or strange noises. Our vans carry common parts, so most repairs are fixed first visit.",
+      "priceFrom": "£85"
+    },
+    {
+      "title": "Annual boiler servicing",
+      "icon": "calendar",
+      "description": "Keep your boiler safe, efficient and its warranty valid with a full manufacturer-standard service.",
+      "priceFrom": "£79"
+    },
+    {
+      "title": "Landlord gas safety certificates",
+      "icon": "clipboard",
+      "description": "CP12 gas safety records for landlords and letting agents, with reminders so you never miss a renewal.",
+      "priceFrom": "£65"
+    },
+    {
+      "title": "Central heating & radiators",
+      "icon": "thermometer",
+      "description": "Cold spots, new radiators, system upgrades and full central heating installs for homes of every size."
+    },
+    {
+      "title": "Power flushing",
+      "icon": "droplet",
+      "description": "Clear the sludge from your system so radiators heat evenly and your boiler doesn't have to work as hard."
+    }
+  ],
+  "offer": {
+    "title": "New boiler from £1,895, fitted",
+    "text": "Replace an old, inefficient boiler and cut your heating bills. Every installation includes a free smart thermostat and system flush.",
+    "points": [
+      "Up to 12-year manufacturer warranty",
+      "Spread the cost with finance",
+      "Fitted in as little as 24 hours",
+      "Old boiler removed & recycled"
+    ]
+  },
+  "process": [
+    {
+      "title": "Tell us what you need",
+      "text": "Call or send a quick enquiry. We'll ask a few questions about your home and heating."
+    },
+    {
+      "title": "Get a fixed price",
+      "text": "We give you a clear, written quote with no hidden extras, and you choose a time that suits you."
+    },
+    {
+      "title": "We get it sorted",
+      "text": "A Gas Safe engineer arrives on time, does the work properly and leaves your home tidy."
+    }
+  ],
+  "about": {
+    "title": "A local heating company Leeds families trust",
+    "text": "Northgate Heating started in 2009 with one van and a simple promise: turn up on time, charge a fair price and do the job right first time.\n\nToday our team of Gas Safe registered engineers looks after thousands of homes and rental properties across Leeds, but we still run things the same way."
+  },
+  "reviews": {
+    "rating": 4.9,
+    "count": 312,
+    "source": "Google",
+    "items": [
+      {
+        "name": "Sarah M.",
+        "location": "Headingley",
+        "source": "Google",
+        "rating": 5,
+        "text": "Boiler died on a Sunday night with two little ones in the house. They had an engineer with us first thing Monday and it was fixed by 10am. Brilliant service."
+      },
+      {
+        "name": "James P.",
+        "location": "Horsforth",
+        "source": "Google",
+        "rating": 5,
+        "text": "Had a new Worcester combi fitted. The quote was the price we paid, the lads were tidy and explained everything. Would recommend to anyone."
+      },
+      {
+        "name": "Priya K.",
+        "location": "Roundhay",
+        "source": "Google",
+        "rating": 5,
+        "text": "I manage eight rental flats and Northgate handle all the gas safety certificates. Reliable, quick and they send reminders, which saves me a lot of hassle."
+      }
+    ]
+  },
+  "serviceArea": [
+    "Leeds",
+    "Headingley",
+    "Horsforth",
+    "Roundhay",
+    "Kirkstall",
+    "Morley",
+    "Pudsey",
+    "Wetherby",
+    "Otley",
+    "Garforth"
+  ],
+  "faqs": [
+    {
+      "q": "Do you offer emergency boiler repairs?",
+      "a": "Yes. If you have no heating or hot water we offer same-day callouts across Leeds, seven days a week, subject to availability."
+    },
+    {
+      "q": "How much does a new boiler cost?",
+      "a": "Most combi boiler replacements cost between £1,895 and £2,800 fitted, depending on the model and any pipework changes. We'll give you a fixed price before any work starts."
+    },
+    {
+      "q": "How often should my boiler be serviced?",
+      "a": "Once a year. An annual service keeps your boiler safe and efficient, and most manufacturers require it to keep your warranty valid."
+    },
+    {
+      "q": "Are your engineers Gas Safe registered?",
+      "a": "Every engineer who works on gas appliances is Gas Safe registered. You can check our registration number on the Gas Safe Register website."
+    }
+  ],
+  "seo": {
+    "title": "Northgate Heating & Gas | Boiler Repairs & Installations in Leeds",
+    "description": "Gas Safe registered heating engineers in Leeds. Boiler repairs, servicing, new boiler installations and landlord gas safety certificates, with fixed prices."
+  }
+}

@@ -1,0 +1,12 @@
+---
+import type { Brand } from "../lib/schema.ts";
+import { telHref } from "../lib/clients.ts";
+import Icon from "./Icon.astro";
+interface Props { b: Brand }
+const { b } = Astro.props;
+---
+<div class="fixed inset-x-0 bottom-0 z-40 grid grid-cols-2 gap-2 border-t border-rule bg-ground/95 p-2 backdrop-blur md:hidden">
+  <a href={telHref(b.business.phone)} class="btn-line px-2 py-3 text-[15px]"><Icon name="phone" class="size-4" />Call now</a>
+  {/* One line at any phone width, however long the client's CTA text is. */}
+  <a href="#quote" class="btn-accent whitespace-nowrap px-2 py-3 text-[clamp(13px,3.9vw,15px)]">{b.hero.primaryCta}</a>
+</div>

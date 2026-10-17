@@ -1,0 +1,46 @@
+---
+import type { Brand } from "../lib/schema.ts";
+import { telHref } from "../lib/clients.ts";
+import Icon from "./Icon.astro";
+import Logo from "./Logo.astro";
+interface Props { b: Brand }
+const { b } = Astro.props;
+const emergencyPhone = b.business.emergencyPhone ?? b.business.phone;
+const links = [
+  ["Services", "#services"],
+  b.reviews.items.length || b.reviews.rating ? ["Reviews", "#reviews"] : null,
+  b.serviceArea.length ? ["Areas", "#areas"] : null,
+  b.faqs.length ? ["FAQs", "#faqs"] : null,
+  ["Contact", "#quote"],
+].filter(Boolean) as string[][];
+---
+{b.emergency?.enabled && (
+  <a href={telHref(emergencyPhone)} class="block bg-night px-4 py-2.5 text-center text-[13px] tracking-[0.02em] text-white/75 transition duration-300 hover:text-white">
+    <Icon name="zap" class="mr-1.5 inline size-3.5 align-[-2px] text-accent" />{b.emergency.text} <span class="tnum whitespace-nowrap text-white underline decoration-accent underline-offset-4">{emergencyPhone}</span>
+  </a>
+)}
+<header id="top" data-header class="group/h sticky top-0 z-40 border-b border-transparent transition-[background-color,border-color] duration-500 data-[scrolled]:border-rule data-[scrolled]:bg-ground/90 data-[scrolled]:backdrop-blur-md">
+  <div class="container-x flex h-20 items-center justify-between gap-6 transition-[height] duration-500 ease-(--ease) sm:h-24 group-data-[scrolled]/h:h-16 sm:group-data-[scrolled]/h:h-[68px]">
+    <Logo b={b} />
+    <nav class="hidden items-center gap-9 text-xs font-semibold uppercase tracking-[0.18em] text-muted lg:flex">
+      {links.map(([label, href]) => <a href={href} class="group py-2 transition duration-300 hover:text-ink"><span class="sweep pb-1">{label}</span></a>)}
+    </nav>
+    <div class="flex items-center gap-6">
+      <a href={telHref(b.business.phone)} class="group hidden items-center gap-2 sm:flex">
+        <Icon name="phone" class="size-4 text-accent-deep" />
+        <span class="tnum sweep whitespace-nowrap font-heading text-lg text-ink">{b.business.phone}</span>
+      </a>
+      <a href="#quote" class="btn-accent hidden whitespace-nowrap px-5 py-2.5 text-sm sm:inline-flex">{b.hero.primaryCta}</a>
+    </div>
+  </div>
+</header>
+
+<script>
+  // Header settles into a compact bar with a hairline once the page scrolls.
+  const header = document.querySelector<HTMLElement>("[data-header]");
+  if (header) {
+    const update = () => header.toggleAttribute("data-scrolled", scrollY > 24);
+    update();
+    addEventListener("scroll", update, { passive: true });
+  }
+</script>

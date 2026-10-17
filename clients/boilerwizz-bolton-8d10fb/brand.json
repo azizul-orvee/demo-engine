@@ -1,0 +1,208 @@
+{
+  "slug": "boilerwizz-bolton-8d10fb",
+  "niche": "heating",
+  "sourceUrl": "https://maps.app.goo.gl/Qg6TXVAt7kTU1VJr6 (Google Business Profile, no website)",
+  "business": {
+    "name": "BoilerWizz Bolton",
+    "shortName": "BoilerWizz",
+    "phone": "07305 069351",
+    "address": "Hazelhurst Close, Bolton BL1 8XH",
+    "postcode": "BL1 8XH",
+    "hours": [
+      {
+        "days": "Mon – Fri",
+        "time": "8am – 8pm"
+      },
+      {
+        "days": "Saturday",
+        "time": "9am – 6pm"
+      },
+      {
+        "days": "Sunday",
+        "time": "9am – 5pm"
+      }
+    ]
+  },
+  "brand": {
+    "logo": "logo-compact.svg",
+    "logoOnDark": "logo-compact-on-dark.svg",
+    "colors": {
+      "primary": "#1c2f5a",
+      "dark": "#0b1426",
+      "accent": "#d4ad5a"
+    },
+    "headingFont": "Cormorant Garamond",
+    "bodyFont": "Inter"
+  },
+  "hero": {
+    "eyebrow": "Rated 4.9★ by 83 customers on Google",
+    "headline": "No heat or hot water in Bolton? Let's fix it.",
+    "subheadline": "Boiler repairs, servicing and heating work from a local engineer who diagnoses the problem quickly, explains it clearly and leaves your home tidy.",
+    "primaryCta": "Get a free quote",
+    "bullets": [
+      "Open 7 days, until 8pm on weekdays",
+      "4.9★ average from 83 Google reviews",
+      "Clear explanations before any work starts",
+      "Heating, plumbing and electrical in one call"
+    ]
+  },
+  "stats": [
+    {
+      "value": "4.9★",
+      "label": "Average Google rating"
+    },
+    {
+      "value": "83",
+      "label": "Google reviews"
+    },
+    {
+      "value": "7 days",
+      "label": "Open every day of the week"
+    },
+    {
+      "value": "8pm",
+      "label": "Weekday evening appointments"
+    }
+  ],
+  "services": [
+    {
+      "title": "Boiler repairs & fault finding",
+      "icon": "wrench",
+      "description": "Fault codes, pressure loss or a boiler that won't fire. We pin down the cause quickly and tell you exactly what needs doing."
+    },
+    {
+      "title": "Boiler servicing",
+      "icon": "calendar",
+      "description": "A thorough annual service to keep your Worcester, Vaillant or other boiler running safely and efficiently."
+    },
+    {
+      "title": "Central heating & underfloor",
+      "icon": "thermometer",
+      "description": "Cold radiators, no hot water or underfloor heating that won't warm up. We find the fault and get it working properly again."
+    },
+    {
+      "title": "Smart heating controls",
+      "icon": "zap",
+      "description": "Hive and other smart thermostats installed and set up, so you can control your heating from your phone."
+    },
+    {
+      "title": "Burst pipes & plumbing",
+      "icon": "droplet",
+      "description": "Leaks and burst pipes found and fixed before they do more damage to your home."
+    },
+    {
+      "title": "Gas hobs & gas fires",
+      "icon": "flame",
+      "description": "Gas hobs fitted and gas fires checked and repaired, tested so they're safe to use."
+    }
+  ],
+  "process": [
+    {
+      "title": "Call or send a message",
+      "text": "Tell us what's happening with your boiler or heating. We reply quickly and book a time that suits you, including evenings and weekends."
+    },
+    {
+      "title": "We find the fault",
+      "text": "Your engineer diagnoses the problem and explains it in plain English before any work goes ahead."
+    },
+    {
+      "title": "Fixed properly, left tidy",
+      "text": "We carry out the repair, test everything and leave your home as clean as we found it."
+    }
+  ],
+  "about": {
+    "title": "Your local Bolton heating engineer",
+    "text": "BoilerWizz is a Bolton heating and electrical business run by Hussain, an engineer customers describe as knowledgeable, polite and happy to go out of his way.\n\nYou deal with the person who does the work. He explains what's wrong, fixes it properly and makes sure you're sorted before he leaves. That's why so many customers call BoilerWizz again and recommend it to friends.",
+    "image": "vaillant-boiler-service.jpg"
+  },
+  "reviews": {
+    "rating": 4.9,
+    "count": 83,
+    "source": "Google",
+    "items": [
+      {
+        "name": "Siraj P.",
+        "source": "Google",
+        "rating": 5,
+        "text": "I had an issue with my underfloor heating and booked Boilerwizz in Bolton. The engineer, Hussain, quickly diagnosed the problem and explained everything clearly. He fixed the issue efficiently and carried out the work in a very professional manner. Excellent service from start to finish — knowledgeable, reliable, and tidy."
+      },
+      {
+        "name": "Steve G.",
+        "location": "Horwich",
+        "source": "Google",
+        "rating": 5,
+        "text": "Very professional and explained everything clearly. Also his professionalism when talking and engaging was 10/10. He managed to get my heating and hot water back on. He really did go out his way for me. Everything about Boilerwiz is 10/10."
+      },
+      {
+        "name": "Joel B.",
+        "source": "Google",
+        "rating": 5,
+        "text": "Hassan is a fantastic plumber and bloke, provided top notch service throughout and went above and beyond to make sure we were sorted when he left. Incredibly knowledgeable and helped make our boiler work as best as possible. Cannot recommend enough!"
+      },
+      {
+        "name": "Phill T.",
+        "source": "Google",
+        "rating": 5,
+        "text": "I've used Hussein at BoilerWizz twice now and both times he was very helpful, polite and professional. He's now the first person I think of if I have any boiler/plumbing issues. Great service at a great price."
+      },
+      {
+        "name": "Habib",
+        "source": "Google",
+        "rating": 5,
+        "text": "Kitchen pipe had a burst and called Hussain in an emergency. He quickly figured out the issue and saved the house from drowning! Quality service and a really helpful fella."
+      }
+    ]
+  },
+  "gallery": [
+    {
+      "src": "vaillant-boiler-service.jpg",
+      "alt": "Vaillant combi boiler opened up for servicing"
+    },
+    {
+      "src": "worcester-boiler-repair.jpg",
+      "alt": "Inside a Worcester boiler during a repair"
+    },
+    {
+      "src": "system-inhibitor.jpg",
+      "alt": "Adding inhibitor to a central heating system"
+    },
+    {
+      "src": "gas-fire.jpg",
+      "alt": "Gas fire working after repair"
+    },
+    {
+      "src": "gas-hob-install.jpg",
+      "alt": "New Samsung gas hob installed"
+    }
+  ],
+  "serviceArea": [
+    "Bolton",
+    "Horwich"
+  ],
+  "faqs": [
+    {
+      "q": "What should I do if my boiler stops working?",
+      "a": "Check the pressure gauge and any fault code on the display, then give us a call. We'll talk it through and book a visit to diagnose and fix the problem."
+    },
+    {
+      "q": "Do you work evenings and weekends?",
+      "a": "Yes. We're open until 8pm Monday to Friday, 9am to 6pm on Saturdays and 9am to 5pm on Sundays."
+    },
+    {
+      "q": "How often should my boiler be serviced?",
+      "a": "Once a year. Regular servicing keeps your boiler safe and efficient, and most manufacturers require it to keep the warranty valid."
+    },
+    {
+      "q": "Can you install a smart thermostat like Hive?",
+      "a": "Yes. We fit and set up smart heating controls, including Hive, and show you how to use them."
+    },
+    {
+      "q": "Do you do electrical work too?",
+      "a": "Yes. BoilerWizz offers heating and electrical services, so get in touch and tell us what you need."
+    }
+  ],
+  "seo": {
+    "title": "BoilerWizz Bolton | Boiler Repairs & Servicing in Bolton",
+    "description": "Boiler repairs, servicing, central heating and plumbing in Bolton. Rated 4.9★ from 83 Google reviews. Open 7 days, until 8pm on weekdays."
+  }
+}

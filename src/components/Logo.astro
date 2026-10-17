@@ -1,0 +1,19 @@
+---
+import type { Brand } from "../lib/schema.ts";
+import { assetUrl } from "../lib/clients.ts";
+import Icon from "./Icon.astro";
+interface Props { b: Brand; dark?: boolean }
+const { b, dark = false } = Astro.props;
+const src = assetUrl(b.slug, dark ? (b.brand.logoOnDark ?? b.brand.logo) : b.brand.logo);
+const name = b.business.shortName ?? b.business.name;
+---
+<a href="#top" class="flex items-center gap-2.5" aria-label={`${b.business.name} home`}>
+  {src ? (
+    <img src={src} alt={b.business.name} class:list={["h-10 w-auto max-w-[180px] object-contain sm:h-12", dark && !b.brand.logoOnDark && "bg-white p-1.5"]} />
+  ) : (
+    <>
+      <span class="grid size-10 place-items-center rounded-[2px] bg-brand text-brand-ink"><Icon name="flame" class="size-6" /></span>
+      <span class:list={["whitespace-nowrap font-heading text-xl leading-tight", dark ? "text-white" : "text-ink"]}>{name}</span>
+    </>
+  )}
+</a>

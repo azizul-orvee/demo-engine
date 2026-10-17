@@ -1,0 +1,66 @@
+---
+// The "docket strip": ruled proof row along the bottom of the hero.
+// Uses the evidenced stats if there are any, otherwise builds cells from rating / Gas Safe / year established.
+import type { Brand } from "../lib/schema.ts";
+import Icon from "./Icon.astro";
+interface Props { b: Brand }
+const { b } = Astro.props;
+const r = b.reviews;
+const biz = b.business;
+const years = biz.yearEstablished ? new Date().getFullYear() - biz.yearEstablished : undefined;
+const cells = b.stats.length > 0 ? b.stats : [
+  r.rating && { value: `${r.rating.toFixed(1)}★`, label: r.count ? `From ${r.count} ${r.source ?? ""} reviews` : `Average ${r.source ?? ""} rating` },
+  biz.gasSafeNumber && { value: `#${biz.gasSafeNumber}`, label: "Gas Safe registered" },
+  years && years > 1 && { value: `${years}+`, label: "Years in business" },
+].filter(Boolean) as { value: string; label: string }[];
+const cols = ["", "grid-cols-1", "grid-cols-2", "grid-cols-3", "grid-cols-2 md:grid-cols-4"][cells.length];
+// Only plain quantities count up ("4,200+", "4.9★", "15+"). Registration numbers, times and words stay as written.
+const countable = (v: string) => /^[\d,]+(\.\d+)?[+★%]?$/.test(v);
+---
+{(cells.length > 0 || b.accreditations.length > 0) && (
+  <div class="border-t border-white/12 bg-black/15">
+    <div class="container-x">
+      {cells.length > 0 && (
+        <dl class:list={["grid gap-y-1", cols]}>
+          {cells.map((s, i) => (
+            <div class:list={["flex flex-col-reverse py-7 pr-4", i > 0 && "md:border-l md:border-white/12 md:pl-7", i % 2 === 1 && "max-md:border-l max-md:border-white/12 max-md:pl-4"]}>
+              <dt class="mt-2 text-sm text-white/55">{s.label}</dt>
+              <dd class="tnum font-heading text-3xl leading-none text-white sm:text-4xl" data-count={countable(s.value) ? s.value : undefined}>{s.value}</dd>
+            </div>
+          ))}
+        </dl>
+      )}
+      {b.accreditations.length > 0 && (
+        <ul class:list={["flex flex-wrap gap-x-8 gap-y-2 py-5 text-xs font-semibold uppercase tracking-[0.16em] text-white/65", cells.length > 0 && "border-t border-white/12"]}>
+          {b.accreditations.map((a) => <li class="flex items-center gap-2"><Icon name="shield" class="size-3.5 text-accent" />{a}</li>)}
+        </ul>
+      )}
+    </div>
+  </div>
+)}
+
+<script>
+  // Figures count up to their real value once, after the hero entrance. Server-rendered text is the final value.
+  if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const run = (el: HTMLElement) => {
+      const m = el.dataset.count!.match(/^([\d,]+(?:\.\d+)?)(.*)$/);
+      if (!m) return;
+      const [, num, suffix] = m;
+      const target = parseFloat(num.replace(/,/g, ""));
+      const dp = (num.split(".")[1] ?? "").length;
+      const fmt = (v: number) => (num.includes(",") ? v.toLocaleString("en-GB", { minimumFractionDigits: dp, maximumFractionDigits: dp }) : v.toFixed(dp));
+      const start = performance.now();
+      const tick = (now: number) => {
+        const p = Math.min(1, (now - start) / 1600);
+        el.textContent = fmt(target * (1 - (1 - p) ** 4)) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      el.textContent = fmt(0) + suffix;
+      setTimeout(() => requestAnimationFrame(tick), el.closest(".intro") ? 900 : 0);
+    };
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) if (e.isIntersecting) { io.unobserve(e.target); run(e.target as HTMLElement); }
+    }, { threshold: 0.6 });
+    document.querySelectorAll<HTMLElement>("[data-count]").forEach((el) => io.observe(el));
+  }
+</script>

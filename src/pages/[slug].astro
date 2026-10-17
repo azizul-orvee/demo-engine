@@ -1,0 +1,51 @@
+---
+import Demo from "../layouts/Demo.astro";
+import DemoBanner from "../components/DemoBanner.astro";
+import DemoSwitcher from "../components/DemoSwitcher.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import Services from "../components/Services.astro";
+import Offer from "../components/Offer.astro";
+import Process from "../components/Process.astro";
+import About from "../components/About.astro";
+import Reviews from "../components/Reviews.astro";
+import Gallery from "../components/Gallery.astro";
+import Areas from "../components/Areas.astro";
+import Faq from "../components/Faq.astro";
+import Contact from "../components/Contact.astro";
+import Footer from "../components/Footer.astro";
+import CallBar from "../components/CallBar.astro";
+import { listClientSlugs, loadClient, isShowcase, pagePath } from "../lib/clients.ts";
+
+export function getStaticPaths() {
+  const slugs = listClientSlugs();
+  // Only the showcase page lists the client demos; client demos never link back to it.
+  const demos = slugs
+    .filter((s) => !isShowcase(s))
+    .map((s) => ({ name: loadClient(s).business.name, href: `/${pagePath(s)}/` }))
+    .sort((a, z) => a.name.localeCompare(z.name));
+  return slugs.map((slug) => ({
+    params: { slug: pagePath(slug) },
+    props: { b: loadClient(slug), showcase: isShowcase(slug), demos: isShowcase(slug) ? demos : [] },
+  }));
+}
+const { b, showcase, demos } = Astro.props;
+---
+<Demo b={b}>
+  {showcase ? <DemoSwitcher demos={demos} /> : <DemoBanner b={b} />}
+  <Header b={b} />
+  <main>
+    <Hero b={b} />
+    <Services b={b} />
+    <Offer b={b} />
+    <Process b={b} />
+    <About b={b} />
+    <Reviews b={b} />
+    <Gallery b={b} />
+    <Areas b={b} />
+    <Faq b={b} />
+    <Contact b={b} />
+  </main>
+  <Footer b={b} concept={!showcase} />
+  <CallBar b={b} />
+</Demo>

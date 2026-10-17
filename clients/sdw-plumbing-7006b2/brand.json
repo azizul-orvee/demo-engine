@@ -1,0 +1,87 @@
+{
+  "slug": "sdw-plumbing-7006b2",
+  "niche": "heating",
+  "sourceUrl": "https://sdwltdplumbing.co.uk/ · https://www.google.com/maps/place/SDW+Plumbing+Ltd/@53.68855,-1.5036616,14z/data=!4m6!3m5!1s0x4879666559d50e4f:0xd3cdff70fb639ef4!8m2!3d53.68855!4d-1.5036616!16s%2Fg%2F11csbfmcwy",
+  "business": {
+    "name": "SDW Plumbing Ltd",
+    "shortName": "S.D. White",
+    "phone": "07921 717345",
+    "email": "info@sdwltdplumbing.com",
+    "address": "2 North Road Terrace, Wakefield WF1 3PY",
+    "postcode": "WF1 3PY"
+  },
+  "brand": {
+    "colors": {
+      "primary": "#1d3fae",
+      "dark": "#0b1430",
+      "accent": "#d8bb88"
+    }
+  },
+  "hero": {
+    "eyebrow": "Plumbing & heating engineers in Wakefield",
+    "headline": "Warm homes and better bathrooms across Wakefield.",
+    "subheadline": "Boiler servicing, repairs and replacements, central heating and full bathroom installations, from an established local team with years of experience behind them.",
+    "primaryCta": "Request a free quote",
+    "bullets": [
+      "Combi, vented and unvented systems",
+      "Bathrooms from cloakrooms to full wet rooms",
+      "Residential and commercial customers",
+      "Every photo here is our own work"
+    ]
+  },
+  "stats": [
+    { "value": "4.7★", "label": "Average Google rating" },
+    { "value": "18", "label": "Google reviews" },
+    { "value": "Free", "label": "Quotations and estimates" }
+  ],
+  "services": [
+    { "title": "New boilers & heating systems", "icon": "flame", "description": "From combi boilers to full vented and unvented systems, we'll recommend the right setup for your home and fit it to the highest standards." },
+    { "title": "Boiler servicing", "icon": "calendar", "description": "Annual services for your boiler and gas appliances, to keep them safe, efficient and running for years to come." },
+    { "title": "Boiler & heating repairs", "icon": "wrench", "description": "No heating or hot water? We'll find the fault, explain it clearly and get your boiler working again." },
+    { "title": "Landlord gas safety checks", "icon": "clipboard", "description": "Gas safety checks on the appliances in your rental properties, alongside their annual servicing." },
+    { "title": "Bathrooms & wet rooms", "icon": "droplet", "description": "From a simple cloakroom to a large, modern wet room. We handle the joinery, plumbing and tiling, and help you through every choice." },
+    { "title": "Underfloor heating", "icon": "thermometer", "description": "Underfloor heating laid as part of a new bathroom or room refit, for even warmth without radiators on the wall." },
+    { "title": "Plumbing repairs & maintenance", "icon": "home", "description": "The odd jobs too: dripping taps, leaks and repairs, for homes and commercial premises alike." }
+  ],
+  "process": [
+    { "title": "Tell us what you need", "text": "Call us or send a few details about the job, whether it's a boiler service or a full bathroom." },
+    { "title": "Get a free quotation", "text": "We'll talk you through the options and give you a clear quotation or estimate, free of charge." },
+    { "title": "We get it done properly", "text": "Our team carries out the work to a high standard and leaves your home clean and tidy." }
+  ],
+  "about": {
+    "title": "An established Wakefield plumbing and heating firm",
+    "text": "SDW Plumbing is an established plumbing and heating company in Wakefield, handling everything from re-washering a tap to full bathroom refits and commercial installations.\n\nStuart and his team have years of experience between them, and some customers have trusted them with their boiler for more than a decade. Every photo on this site is their own work, not a brochure image."
+  },
+  "reviews": {
+    "rating": 4.7,
+    "count": 18,
+    "source": "Google",
+    "items": [
+      { "name": "Sharon B.", "source": "Google", "rating": 5, "text": "I have used SDW plumbing & heating for numerous jobs in our home including full bathroom installation, laying underfloor heating, boiler servicing & replacement and I have always found Stuart & his team to be nothing less than professional, punctual and value for money." },
+      { "name": "Olivia T.", "source": "Google", "rating": 5, "text": "My second phone call today I needed someone to come out to the house, within the same day they have been out to the house and got my boiler back working within the hour. I will definitely be using SDW plumbing for everything moving forward. Highly recommend." },
+      { "name": "Sheila M.", "source": "Google", "rating": 5, "text": "Efficient, reliable & competitively priced! When British Gas told me in 2013 that they could no longer get the parts for my 30 yr old boiler I turned to SDW plumbing! For over 10yrs they serviced my boiler & kept it running!" },
+      { "name": "Ray S.", "source": "Google", "rating": 5, "text": "Great Plumbing Company with staff you can trust in your home. Their work is always tidy and efficient. We have been customers since the company started. Highly Recommended." }
+    ]
+  },
+  "gallery": [
+    { "src": "luxury-bathroom.jpg", "alt": "Finished bathroom with stone-effect tiles, inset bath, walk-in shower and heated towel rails" },
+    { "src": "bath-detail.jpg", "alt": "Modern bath with wall-mounted chrome mixer against dark tiles" },
+    { "src": "travertine-bathroom.jpg", "alt": "Travertine-tiled bathroom with panelled bath, basin and close-coupled toilet" },
+    { "src": "dark-tile-bathroom.jpg", "alt": "Bathroom in large-format dark tiles with wall-hung toilet and vanity unit" },
+    { "src": "basin-detail.jpg", "alt": "Basin and chrome tap against travertine tiles" },
+    { "src": "shower-room.jpg", "alt": "Refitted bathroom with glass shower enclosure and dark linear tiles" }
+  ],
+  "serviceArea": ["Wakefield", "West Yorkshire"],
+  "faqs": [
+    { "q": "Do you give free quotes?", "a": "Yes. Quotations and estimates are free. Call us or send a few details about the job and we'll arrange a time to talk it through." },
+    { "q": "Which boilers and heating systems do you fit?", "a": "Combi boilers and full vented and unvented systems. We'll recommend the right setup for your home and how you use hot water." },
+    { "q": "How often should my boiler be serviced?", "a": "Once a year. An annual service keeps your boiler safe and efficient, and most manufacturers require it to keep the warranty valid." },
+    { "q": "Can you handle a whole bathroom, not just the plumbing?", "a": "Yes. We take care of the joinery, plumbing and tiling, from a small cloakroom to a full wet room, and help you choose along the way." },
+    { "q": "Do you do landlord gas safety checks?", "a": "Yes. We carry out landlord checks on gas appliances, as well as annual servicing for rental properties." },
+    { "q": "Do you work on commercial properties?", "a": "Yes. As well as homes, we install and maintain plumbing and heating for commercial customers." }
+  ],
+  "seo": {
+    "title": "SDW Plumbing | Plumbing, Heating & Bathrooms in Wakefield",
+    "description": "Established plumbing and heating engineers in Wakefield. Boiler installation, servicing and repairs, landlord gas checks, bathrooms and wet rooms. Free quotations."
+  }
+}

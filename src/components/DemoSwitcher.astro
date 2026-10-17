@@ -1,0 +1,18 @@
+---
+// Top bar on the showcase page only: jump to any client demo.
+interface Props { demos: { name: string; href: string }[] }
+const { demos } = Astro.props;
+---
+{demos.length > 0 && (
+  <div class="relative z-50 bg-slate-950 px-4 py-2 text-xs text-slate-300 sm:text-sm">
+    <div class="container-x flex items-center justify-center gap-3 sm:justify-end">
+      <label for="demo-switcher" class="whitespace-nowrap">Client demos</label>
+      <select id="demo-switcher"
+        class="min-w-0 max-w-[60vw] cursor-pointer rounded-md border border-white/15 bg-slate-900 py-1 pl-2.5 pr-8 text-slate-100 focus:outline-none focus:ring-2 focus:ring-accent sm:max-w-xs"
+        onchange="if (this.value) location.href = this.value">
+        <option value="" selected>Choose a demo site…</option>
+        {demos.map((d) => <option value={d.href}>{d.name}</option>)}
+      </select>
+    </div>
+  </div>
+)}

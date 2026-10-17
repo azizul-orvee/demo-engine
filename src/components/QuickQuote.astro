@@ -1,0 +1,45 @@
+---
+import type { Brand } from "../lib/schema.ts";
+import Icon from "./Icon.astro";
+interface Props { b: Brand }
+const { b } = Astro.props;
+---
+<div id="quick-quote" class="panel scroll-mt-28 p-7 sm:p-9">
+  <h2 class="text-3xl">Get your quote</h2>
+  <p class="mt-2 text-[15px] text-muted">Tell us what you need and we'll get straight back to you.</p>
+  <form class="demo-form mt-7 grid gap-3" novalidate>
+    <label class="sr-only" for="qq-service">Service</label>
+    <select id="qq-service" class="field service-select">
+      {b.services.map((s) => <option>{s.title}</option>)}
+      <option>Something else</option>
+    </select>
+    <div class="grid grid-cols-2 gap-3">
+      <input class="field" placeholder="Postcode" autocomplete="postal-code" aria-label="Postcode" />
+      <input class="field" placeholder="Phone" type="tel" autocomplete="tel" aria-label="Phone" />
+    </div>
+    <button class="btn-accent mt-2 w-full text-base" type="submit">{b.hero.primaryCta} <Icon name="arrow" class="size-4" /></button>
+    <p role="status" aria-live="polite" class="demo-success hidden bg-paper p-3.5 text-sm text-ink"></p>
+  </form>
+  {b.business.gasSafeNumber && (
+    <p class="rule-t mt-6 flex items-center gap-2 pt-5 text-sm text-muted"><Icon name="shield" class="size-4 text-accent-deep" />Gas Safe registered engineers</p>
+  )}
+</div>
+
+<script>
+  // The hero CTA sits beside this form: move focus into it instead of jumping to the contact form further down.
+  document.querySelectorAll<HTMLAnchorElement>('a[href="#quick-quote"]').forEach((a) => {
+    a.addEventListener("click", (e) => {
+      const form = document.getElementById("quick-quote");
+      const field = document.querySelector<HTMLSelectElement>("#qq-service");
+      if (!form || !field) return;
+      // Fragment navigation would clear focus, so scroll by hand and only when the form isn't already in view.
+      e.preventDefault();
+      const r = form.getBoundingClientRect();
+      if (r.top < 80 || r.bottom > innerHeight) {
+        const smooth = !matchMedia("(prefers-reduced-motion: reduce)").matches;
+        window.scrollTo({ top: r.top + scrollY - 112, behavior: smooth ? "smooth" : "auto" });
+      }
+      field.focus({ preventScroll: true });
+    });
+  });
+</script>

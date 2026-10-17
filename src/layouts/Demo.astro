@@ -1,0 +1,39 @@
+---
+import "../styles/global.css";
+import type { Brand } from "../lib/schema.ts";
+import { inkFor, assetUrl } from "../lib/clients.ts";
+
+interface Props { b: Brand }
+const { b } = Astro.props;
+const c = b.brand.colors;
+const vars = [
+  `--brand:${c.primary}`, `--brand-ink:${inkFor(c.primary)}`,
+  `--dark:${c.dark}`, `--dark-ink:${inkFor(c.dark)}`,
+  `--accent:${c.accent}`, `--accent-ink:${inkFor(c.accent)}`,
+  `--heading-font:"${b.brand.headingFont}"`, `--body-font:"${b.brand.bodyFont}"`,
+].join(";");
+// `axes` is a Google Fonts axis spec, e.g. "wght@400;500" or "ital,wght@1,400".
+const font = (f: string, axes: string) => `https://fonts.googleapis.com/css2?family=${encodeURIComponent(f).replace(/%20/g, "+")}:${axes}&display=swap`;
+const icon = assetUrl(b.slug, b.brand.logo);
+---
+<!doctype html>
+<html lang="en-GB" style={vars}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <title>{b.seo.title}</title>
+    <meta name="description" content={b.seo.description} />
+    <meta name="theme-color" content={c.dark} />
+    {icon && <link rel="icon" href={icon} />}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href={font(b.brand.headingFont, "wght@400;500;600")} />
+    {/* Italic on its own request, so a family without italics can't break the roman weights. */}
+    <link rel="stylesheet" href={font(b.brand.headingFont, "ital,wght@1,400")} />
+    {b.brand.bodyFont !== b.brand.headingFont && <link rel="stylesheet" href={font(b.brand.bodyFont, "wght@400;500;600")} />}
+  </head>
+  <body class="pb-16 md:pb-0">
+    <slot />
+  </body>
+</html>

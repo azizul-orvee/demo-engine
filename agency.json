@@ -1,0 +1,11 @@
+{
+  "name": "Your Agency",
+  "website": "https://example.com",
+  "email": "hello@example.com",
+  "phone": "",
+  "bannerText": "Concept website prepared for {business} by {agency}. Like what you see? Let's talk.",
+  "showcase": {
+    "client": "sample-northgate-heating",
+    "path": "main95"
+  }
+}

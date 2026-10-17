@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+  <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#f3e2b0"/>
+    <stop offset="0.45" stop-color="#c9a24f"/>
+    <stop offset="0.7" stop-color="#e8cf8c"/>
+    <stop offset="1" stop-color="#a8823a"/>
+  </linearGradient></defs>
+  <rect width="200" height="200" fill="#0b1426"/>
+  <g transform="translate(34 21.299999999999997) scale(1.1)">
+  <path d="M2 148V60A58 58 0 0 1 118 60V148Z" fill="none" stroke="#c9a24f" stroke-width="2.6"/>
+  <path d="M10 140V61A50 50 0 0 1 110 61V140Z" fill="none" stroke="#c9a24f" stroke-width="0.9"/>
+  <path d="M60 -4l4 4-4 4-4-4z" fill="url(#gold)"/>
+  <path fill-rule="evenodd" fill="url(#gold)" d="
+    M60 30
+    C70 48 88 60 86 88
+    C84.5 110 72 122 60 122
+    C48 122 35.5 110 34 90
+    C32.6 72 43 63 48 52
+    C50 62 53 67 57 70
+    C55 56 54.5 44 60 30Z
+    M60.5 74
+    C66 86 73 92 71.5 104
+    C70.5 112 65.5 116 60 116
+    C54.5 116 49.5 112 48.8 105
+    C48 96 55 89 60.5 74Z"/>
+  <path d="M30 131H90" stroke="#c9a24f" stroke-width="1.2"/>
+  <path d="M60 127.5l3.5 3.5-3.5 3.5-3.5-3.5z" fill="url(#gold)"/></g>
+</svg>

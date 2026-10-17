@@ -1,0 +1,39 @@
+---
+import type { Brand } from "../lib/schema.ts";
+import { telHref } from "../lib/clients.ts";
+import Logo from "./Logo.astro";
+interface Props { b: Brand; concept?: boolean }
+const { b, concept = true } = Astro.props;
+const biz = b.business;
+const legal = [
+  biz.gasSafeNumber && `Gas Safe Reg. ${biz.gasSafeNumber}`,
+  biz.oftecNumber && `OFTEC Reg. ${biz.oftecNumber}`,
+  biz.companyNumber && `Company No. ${biz.companyNumber}`,
+].filter(Boolean);
+---
+<footer class="bg-night text-white/60">
+  <div class="container-x grid gap-12 py-20 md:grid-cols-4">
+    <div class="md:col-span-2">
+      <Logo b={b} dark />
+      <p class="mt-6 max-w-sm text-sm leading-relaxed">{b.seo.description}</p>
+    </div>
+    <div>
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-white">Services</p>
+      <ul class="mt-4 text-sm">{b.services.slice(0, 6).map((s) => <li><a href="#services" class="group inline-block py-1.5 transition duration-300 hover:text-white">{s.title}</a></li>)}</ul>
+    </div>
+    <div>
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-white">Contact</p>
+      <ul class="mt-4 text-sm">
+        <li><a href={telHref(biz.phone)} class="tnum group inline-block py-1.5 transition duration-300 hover:text-white">{biz.phone}</a></li>
+        {biz.email && <li><a href={`mailto:${biz.email}`} class="group inline-block py-1.5 transition duration-300 hover:text-white">{biz.email}</a></li>}
+        {biz.address && <li class="py-1.5">{biz.address}</li>}
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="container-x flex flex-col gap-2 py-6 text-xs sm:flex-row sm:justify-between">
+      <p>© {new Date().getFullYear()} {biz.name}. {legal.join(" · ")}</p>
+      {concept && <p>Concept design. Not the official website of {biz.name}.</p>}
+    </div>
+  </div>
+</footer>

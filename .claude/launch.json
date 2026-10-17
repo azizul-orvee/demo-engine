@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "demo-engine",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--", "--port", "4321"],
+      "port": 4321
+    },
+    {
+      "name": "demo-engine-build",
+      "runtimeExecutable": "sh",
+      "runtimeArgs": ["-c", "npm run build && ASTRO_TELEMETRY_DISABLED=1 npx astro preview --port 4330"],
+      "port": 4330
+    }
+  ]
+}

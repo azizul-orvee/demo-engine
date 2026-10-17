@@ -1,0 +1,35 @@
+---
+import type { Brand } from "../lib/schema.ts";
+import { assetUrl } from "../lib/clients.ts";
+interface Props { b: Brand }
+const { b } = Astro.props;
+const items = b.gallery.slice(0, 8);
+const n = items.length;
+// Pick the grid by photo count so every row comes out complete (no lone photo on the last row).
+// Desktop: 5 → big first tile in 4 columns, 6 → big first tile in 3, 7 → wide first tile in 4, 4/8 → even grid of 4.
+const desktop: Record<number, { cols: string; first: string }> = {
+  4: { cols: "lg:grid-cols-4", first: "" },
+  5: { cols: "lg:grid-cols-4", first: "lg:col-span-2 lg:row-span-2 lg:aspect-auto" },
+  6: { cols: "lg:grid-cols-3", first: "lg:col-span-2 lg:row-span-2 lg:aspect-auto" },
+  7: { cols: "lg:grid-cols-4", first: "lg:col-span-2 lg:aspect-auto" },
+  8: { cols: "lg:grid-cols-4", first: "" },
+};
+const plan = desktop[n] ?? { cols: "lg:grid-cols-3", first: "" };
+// Mobile is two columns: with an odd count the first photo runs full width.
+const firstMobile = n % 2 === 1 ? "col-span-2 aspect-[16/9]" : "";
+---
+{n > 0 && (
+  <section class="section bg-paper">
+    <div class="container-x">
+      <p class="sec-label">Gallery</p>
+      <h2 class="h2 mt-5">Recent work</h2>
+      <div class:list={["mt-14 grid grid-cols-2 gap-3 sm:gap-5", plan.cols]}>
+        {items.map((g, i) => (
+          <div class:list={["aspect-[4/3] overflow-hidden bg-rule", i === 0 && firstMobile, i === 0 && plan.first]}>
+            <img src={assetUrl(b.slug, g.src)} alt={g.alt} loading="lazy" class="curtain size-full object-cover transition duration-[1.2s] ease-(--ease) hover:scale-[1.04]" />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+)}

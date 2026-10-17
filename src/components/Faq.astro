@@ -1,0 +1,27 @@
+---
+import type { Brand } from "../lib/schema.ts";
+import Icon from "./Icon.astro";
+interface Props { b: Brand }
+const { b } = Astro.props;
+---
+{b.faqs.length > 0 && (
+  <section id="faqs" class="section scroll-mt-20 bg-paper">
+    <div class="container-x grid gap-12 lg:grid-cols-12 lg:gap-20">
+      <div class="lg:col-span-4">
+        <p class="sec-label">Questions</p>
+        <h2 class="h2 mt-5">Questions, answered</h2>
+        <p class="mt-5 text-muted">Can't find what you're looking for? <a href="#quote" class="group text-ink"><span class="sweep pb-0.5 font-medium">Get in touch</span></a>.</p>
+      </div>
+      <div class="rule-t lg:col-span-8">
+        {b.faqs.map((f, i) => (
+          <details class="group rule-b" open={i === 0}>
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-8 py-7 font-heading text-xl text-ink sm:text-2xl [&::-webkit-details-marker]:hidden">
+              {f.q}<Icon name="plus" class="size-5 shrink-0 text-accent-deep transition duration-500 ease-(--ease) group-open:rotate-45" />
+            </summary>
+            <p class="max-w-2xl pb-8 text-muted">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+)}

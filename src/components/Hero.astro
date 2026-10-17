@@ -1,0 +1,54 @@
+---
+import type { Brand } from "../lib/schema.ts";
+import { assetUrl, telHref } from "../lib/clients.ts";
+import Icon from "./Icon.astro";
+import QuickQuote from "./QuickQuote.astro";
+import TrustBar from "./TrustBar.astro";
+interface Props { b: Brand }
+const { b } = Astro.props;
+const img = assetUrl(b.slug, b.hero.image);
+const words = b.hero.headline.split(/\s+/);
+// Entrance timeline (ms): headline words first, then each block follows on a fixed beat.
+const t = 300 + words.length * 55;
+---
+<section class="relative isolate overflow-hidden bg-dark text-white">
+  {img ? (
+    <>
+      <img src={img} alt="" class="settle absolute inset-0 -z-20 size-full object-cover" fetchpriority="high" />
+      <div class="absolute inset-0 -z-10 bg-gradient-to-r from-dark via-dark/88 to-dark/40"></div>
+    </>
+  ) : (
+    <div class="absolute inset-0 -z-10" style="background:radial-gradient(70% 90% at 100% 0%,color-mix(in oklab,var(--brand) 32%,transparent),transparent 70%)"></div>
+  )}
+  <div class="container-x grid items-end gap-14 pb-16 pt-14 sm:pt-20 lg:grid-cols-12 lg:gap-16 lg:pb-24 lg:pt-28">
+    <div class="lg:col-span-7">
+      {b.hero.eyebrow && (
+        <p class="intro flex items-center gap-4 text-xs font-semibold uppercase tracking-[0.2em] text-white/70">
+          <span class="h-px w-10 shrink-0 bg-accent"></span>{b.hero.eyebrow}
+        </p>
+      )}
+      <h1 class="h1 mt-7 text-white" aria-label={b.hero.headline}>
+        {words.map((w, i) => <><span class="word-mask" aria-hidden="true"><span style={`--i:${i}`}>{w}</span></span>{" "}</>)}
+      </h1>
+      <p class="intro mt-7 max-w-xl text-lg text-white/70 sm:text-xl" style={`--d:${t}`}>{b.hero.subheadline}</p>
+      {b.hero.bullets.length > 0 && (
+        <ul class="intro mt-9 grid max-w-2xl gap-x-10 gap-y-3 text-white/85 sm:grid-cols-2" style={`--d:${t + 120}`}>
+          {b.hero.bullets.map((x) => <li class="flex gap-3.5"><span class="mt-[0.85em] h-px w-4 shrink-0 bg-accent"></span>{x}</li>)}
+        </ul>
+      )}
+      <div class="intro mt-11 flex flex-col gap-6 sm:flex-row sm:items-center sm:gap-8" style={`--d:${t + 240}`}>
+        <a href="#quick-quote" class="btn-accent text-base">{b.hero.primaryCta}<Icon name="arrow" class="size-4" /></a>
+        <a href={telHref(b.business.phone)} class="group flex min-h-11 items-baseline gap-3">
+          <span class="font-heading text-lg italic text-white/60">or call</span>
+          <span class="tnum sweep font-heading text-[1.75rem] text-white sm:text-3xl">{b.business.phone}</span>
+        </a>
+      </div>
+    </div>
+    <div class="intro lg:col-span-5" style={`--d:${t + 360}`}>
+      <QuickQuote b={b} />
+    </div>
+  </div>
+  <div class="intro" style={`--d:${t + 520}`}>
+    <TrustBar b={b} />
+  </div>
+</section>

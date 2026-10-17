@@ -1,0 +1,137 @@
+@import "tailwindcss";
+
+/* Brand colours are injected per client as CSS variables in Demo.astro (--brand, --dark, --accent + inks).
+   Every other colour role is derived from those three here, so no client ever gets a hue it didn't choose.
+   The look is "quiet luxury": a warm ground tinted by the accent, ink type, hairline rules, no shadows. */
+:root {
+  --ground: color-mix(in oklab, var(--accent) 6%, #fcfbf8);
+  --paper: color-mix(in oklab, var(--accent) 12%, #f6f4ef);
+  --ink: color-mix(in oklab, var(--dark) 88%, black);
+  --muted: color-mix(in oklab, var(--ink) 68%, var(--ground));
+  --rule: color-mix(in oklab, var(--ink) 15%, var(--ground));
+  --night: color-mix(in oklab, var(--dark) 72%, black);
+  /* Accent darkened toward ink: stars and marks on light grounds, where a pale accent would vanish. */
+  --accent-deep: color-mix(in oklab, var(--accent) 55%, var(--ink));
+  /* Same hue, lightness capped so it clears 4.5:1 on the light grounds however pale the client's accent is. */
+  --accent-deep: oklch(from var(--accent) min(l, 0.5) c h);
+  --ease: cubic-bezier(.16, 1, .3, 1);
+  /* Context tokens, swapped on dark surfaces below and reset by .panel. */
+  --line: var(--rule);
+  --focus: var(--brand);
+  --btn-bg: var(--dark);
+  --btn-ink: var(--dark-ink);
+  --btn-fill: var(--accent);
+  --btn-fill-ink: var(--accent-ink);
+}
+.bg-dark, .bg-night, #demo-banner {
+  --line: rgb(255 255 255 / 0.14);
+  --focus: var(--accent);
+  --btn-bg: var(--accent);
+  --btn-ink: var(--accent-ink);
+  --btn-fill: var(--ground);
+  --btn-fill-ink: var(--ink);
+}
+
+@theme inline {
+  --color-brand: var(--brand);
+  --color-brand-ink: var(--brand-ink);
+  --color-dark: var(--dark);
+  --color-dark-ink: var(--dark-ink);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-deep: var(--accent-deep);
+  --color-ground: var(--ground);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-rule: var(--rule);
+  --color-night: var(--night);
+  --font-sans: var(--body-font), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--heading-font), ui-serif, Georgia, serif;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; font-synthesis-weight: none; }
+  body { @apply bg-ground text-[17px] leading-[1.7] text-ink antialiased; }
+  main { counter-reset: sec; }
+  h1, h2, h3, h4 { @apply font-heading font-normal text-ink; letter-spacing: -0.02em; text-wrap: balance; }
+  h3 { font-weight: 500; letter-spacing: -0.01em; }
+  p, li, blockquote { text-wrap: pretty; }
+  ::selection { background: color-mix(in oklab, var(--accent) 35%, transparent); }
+  :focus-visible { outline: 2px solid var(--focus); outline-offset: 4px; }
+}
+
+/* Shape grammar: square surfaces, 2px controls, no shadows anywhere. Rules carry the structure. */
+@utility container-x { @apply mx-auto w-full max-w-6xl px-5 sm:px-8; }
+@utility section { @apply py-24 sm:py-36; }
+@utility section-tight { @apply py-16 sm:py-24; }
+@utility h1 { font-weight: 400; line-height: 1.02; letter-spacing: -0.03em; font-size: clamp(2.75rem, 1.5rem + 4.6vw, 5.5rem); }
+@utility h2 { font-weight: 400; line-height: 1.06; letter-spacing: -0.025em; font-size: clamp(2.1rem, 1.45rem + 2.3vw, 3.5rem); }
+@utility lead { @apply text-lg text-muted sm:text-xl; }
+@utility tnum { font-variant-numeric: tabular-nums lining-nums; }
+/* Indexed small-caps section label. Numbering comes from a CSS counter, so skipped sections never leave gaps. */
+@utility sec-label {
+  @apply font-sans text-xs font-semibold uppercase tracking-[0.2em] text-muted;
+  &::before { counter-increment: sec; content: counter(sec, decimal-leading-zero) "\2002\2014\2002"; color: var(--accent-deep); }
+}
+@utility rule-t { background: linear-gradient(var(--line), var(--line)) left top / 100% 1px no-repeat; }
+@utility rule-b { background: linear-gradient(var(--line), var(--line)) left bottom / 100% 1px no-repeat; }
+
+/* Buttons: solid fill, and on hover a second colour sweeps in from the left. */
+@utility btn {
+  @apply relative isolate inline-flex items-center justify-center gap-2.5 overflow-hidden rounded-[2px] px-6 py-3.5 font-medium tracking-[0.01em] transition-[color,scale] duration-300 ease-(--ease) active:scale-[0.985] disabled:cursor-wait disabled:opacity-70;
+  &::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--btn-fill); transform: scaleX(0); transform-origin: left; transition: transform 0.5s var(--ease); }
+  &:not(:disabled):hover { color: var(--btn-fill-ink); }
+  &:not(:disabled):hover::before { transform: scaleX(1); }
+}
+@utility btn-accent { @apply btn; background-color: var(--btn-bg); color: var(--btn-ink); }
+@utility btn-line { @apply btn border border-ink/70 text-ink; --btn-fill: var(--ink); --btn-fill-ink: var(--ground); }
+@utility btn-ghost { @apply btn border border-white/30 text-white; --btn-fill: var(--ground); --btn-fill-ink: var(--ink); }
+/* A light surface inside a dark section (the quote panels): resets the context tokens back to light. */
+@utility panel {
+  @apply border border-white/10 bg-ground text-ink;
+  --line: var(--rule); --focus: var(--brand); --btn-bg: var(--dark); --btn-ink: var(--dark-ink); --btn-fill: var(--accent); --btn-fill-ink: var(--accent-ink);
+}
+@utility field { @apply w-full rounded-[2px] border border-rule bg-white/70 px-4 py-3 text-ink placeholder:text-muted/80 transition duration-200 focus:border-ink focus:bg-white focus:outline-none; }
+
+/* On dark sections the label lightens and its index takes the full accent. */
+.bg-dark .sec-label { color: rgb(255 255 255 / 0.55); }
+.bg-dark .sec-label::before { color: var(--accent); }
+
+/* Title underline that sweeps in on hover of its row. */
+.sweep { background: linear-gradient(var(--accent), var(--accent)) left 100% / 0% 1px no-repeat; transition: background-size 0.6s var(--ease); }
+.group:hover .sweep, .group:focus-visible .sweep { background-size: 100% 1px; }
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Hero entrance: headline words rise out of a mask, then the rest fades up on a stagger (--d in ms). */
+  .word-mask { display: inline-block; overflow: clip; overflow-clip-margin: 0.12em; vertical-align: top; }
+  .word-mask > span { display: inline-block; animation: word 1.1s var(--ease) both; animation-delay: calc(150ms + var(--i) * 55ms); }
+  .intro { animation: rise 1s var(--ease) both; animation-delay: calc(var(--d, 0) * 1ms); }
+  .settle { animation: settle 2.6s var(--ease) both; }
+
+  /* Scroll-linked: sections rise, rules draw left to right, photos open like a curtain. */
+  @supports (animation-timeline: view()) {
+    .reveal { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% cover 28%; }
+    .rule-t, .rule-b { animation: draw linear both; animation-timeline: view(); animation-range: entry 5% cover 35%; }
+    .curtain { animation: curtain linear both; animation-timeline: view(); animation-range: entry 0% cover 45%; }
+  }
+
+  /* FAQ answers ease open where the browser can animate to height:auto. */
+  @supports (interpolate-size: allow-keywords) {
+    :root { interpolate-size: allow-keywords; }
+    details::details-content { block-size: 0; overflow-y: clip; transition: block-size 0.45s var(--ease), content-visibility 0.45s allow-discrete; }
+    details[open]::details-content { block-size: auto; }
+  }
+
+  @keyframes word { from { transform: translateY(110%); } to { transform: none; } }
+  @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+  @keyframes settle { from { scale: 1.08; } to { scale: 1; } }
+  @keyframes draw { from { background-size: 0% 1px; } }
+  @keyframes curtain { from { clip-path: inset(14% 0 0 0); opacity: 0.4; } to { clip-path: inset(0); opacity: 1; } }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, ::before, ::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+  .btn, .btn-accent, .btn-line, .btn-ghost, .group :is(svg, img), img { translate: none !important; scale: none !important; }
+}

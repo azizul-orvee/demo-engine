@@ -1,0 +1,70 @@
+---
+import type { Brand } from "../lib/schema.ts";
+import { telHref } from "../lib/clients.ts";
+import Icon from "./Icon.astro";
+interface Props { b: Brand }
+const { b } = Astro.props;
+const biz = b.business;
+---
+<section id="quote" class="section scroll-mt-20 bg-dark text-white">
+  <div class="container-x grid gap-16 lg:grid-cols-12 lg:gap-20">
+    <div class="lg:col-span-5">
+      <p class="sec-label">Contact</p>
+      <h2 class="h2 mt-5 text-white">Book an engineer or get a free quote</h2>
+      <p class="mt-5 max-w-md text-lg text-white/65">Call us, or send a few details and we'll come back to you with a clear, no-obligation price.</p>
+      <ul class="rule-t mt-12">
+        <li class="rule-b py-5"><a href={telHref(biz.phone)} class="group block"><span class="block text-xs font-semibold uppercase tracking-[0.18em] text-white/50">Call us</span><span class="tnum sweep mt-1 inline-block font-heading text-4xl text-white">{biz.phone}</span></a></li>
+        {biz.email && <li class="rule-b py-5"><a href={`mailto:${biz.email}`} class="group block"><span class="block text-xs font-semibold uppercase tracking-[0.18em] text-white/50">Email</span><span class="sweep mt-1.5 inline-block text-lg">{biz.email}</span></a></li>}
+        {biz.address && <li class="rule-b py-5"><span class="block text-xs font-semibold uppercase tracking-[0.18em] text-white/50">Address</span><span class="mt-1.5 block text-lg">{biz.address}</span></li>}
+      </ul>
+      {biz.hours.length > 0 && (
+        <dl class="mt-10 max-w-sm">
+          {biz.hours.map((h) => <div class="rule-b flex justify-between py-3 text-sm"><dt class="text-white/55">{h.days}</dt><dd class="tnum">{h.time}</dd></div>)}
+        </dl>
+      )}
+    </div>
+    <form class="demo-form panel self-start p-7 sm:p-10 lg:col-span-7" novalidate>
+      <div class="grid gap-5 sm:grid-cols-2">
+        <label class="grid gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-muted">Name<input class="field text-base normal-case tracking-normal" autocomplete="name" /></label>
+        <label class="grid gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-muted">Phone<input class="field text-base normal-case tracking-normal" type="tel" autocomplete="tel" /></label>
+        <label class="grid gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-muted">Email<input class="field text-base normal-case tracking-normal" type="email" autocomplete="email" /></label>
+        <label class="grid gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-muted">Postcode<input class="field text-base normal-case tracking-normal" autocomplete="postal-code" /></label>
+        <label class="grid gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-muted sm:col-span-2">Service
+          <select class="field service-select text-base normal-case tracking-normal">{b.services.map((s) => <option>{s.title}</option>)}<option>Something else</option></select>
+        </label>
+        <label class="grid gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-muted sm:col-span-2">How can we help?<textarea rows="4" class="field text-base normal-case tracking-normal" placeholder="e.g. Boiler losing pressure, no hot water since Monday"></textarea></label>
+      </div>
+      <button class="btn-accent mt-7 w-full text-base" type="submit">{b.hero.primaryCta} <Icon name="arrow" class="size-4" /></button>
+      <p role="status" aria-live="polite" class="demo-success mt-4 hidden bg-paper p-3.5 text-sm text-ink"></p>
+    </form>
+  </div>
+</section>
+
+<script>
+  // Demo-only behaviour: forms don't submit anywhere, they explain what the live site would do.
+  document.querySelectorAll<HTMLFormElement>(".demo-form").forEach((form) => {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const msg = form.querySelector<HTMLElement>(".demo-success");
+      const btn = form.querySelector<HTMLButtonElement>("button[type=submit]");
+      if (!msg || !btn || btn.disabled) return;
+      const label = btn.innerHTML;
+      btn.disabled = true;
+      btn.setAttribute("aria-busy", "true");
+      btn.textContent = "Sending…";
+      setTimeout(() => {
+        btn.innerHTML = label;
+        btn.disabled = false;
+        btn.removeAttribute("aria-busy");
+        msg.textContent = "This is a demo. On your live website this enquiry would arrive instantly by email and text, so you never miss a job.";
+        msg.classList.remove("hidden");
+      }, 700);
+    });
+  });
+  // "Get a quote" links on service cards preselect the service in the form.
+  document.querySelectorAll<HTMLAnchorElement>("[data-service]").forEach((a) => {
+    a.addEventListener("click", () => {
+      document.querySelectorAll<HTMLSelectElement>("#quote .service-select").forEach((s) => (s.value = a.dataset.service!));
+    });
+  });
+</script>

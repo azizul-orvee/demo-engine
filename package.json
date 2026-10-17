@@ -1,0 +1,25 @@
+{
+  "name": "demo-engine",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "sync": "node scripts/sync-assets.ts",
+    "validate": "node scripts/validate.ts",
+    "scrape": "NODE_USE_ENV_PROXY=1 node scripts/scrape.ts",
+    "maps-photos": "NODE_USE_ENV_PROXY=1 node scripts/maps-photos.ts",
+    "new": "node scripts/new-client.ts",
+    "dev": "npm run sync && ASTRO_TELEMETRY_DISABLED=1 astro dev",
+    "build": "npm run sync && npm run validate && ASTRO_TELEMETRY_DISABLED=1 astro build",
+    "preview": "ASTRO_TELEMETRY_DISABLED=1 astro preview"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.3.8",
+    "cheerio": "^1.2.0",
+    "tailwindcss": "^4.3.3",
+    "zod": "^4.6.6"
+  },
+  "engines": {
+    "node": "24.x"
+  }
+}

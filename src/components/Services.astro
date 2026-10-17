@@ -1,0 +1,32 @@
+---
+import type { Brand } from "../lib/schema.ts";
+import Icon from "./Icon.astro";
+interface Props { b: Brand }
+const { b } = Astro.props;
+const area = b.serviceArea[0];
+---
+<section id="services" class="section scroll-mt-20">
+  <div class="container-x">
+    <p class="sec-label">Services</p>
+    <h2 class="h2 mt-5 max-w-3xl">Heating &amp; gas services{area ? ` across ${area}` : ""}</h2>
+    <p class="lead mt-5">Choose a service and we'll add it to your quote request.</p>
+    <ol class="rule-t mt-16 grid md:grid-cols-2 md:gap-x-16">
+      {b.services.map((s, i) => (
+        <li class="rule-b">
+          <a href="#quote" data-service={s.title} class="group grid grid-cols-[2.5rem_1fr] gap-x-3 py-8 sm:grid-cols-[2.5rem_1fr_auto] sm:gap-x-6">
+            <span class="tnum pt-1 font-heading text-lg italic text-accent-deep">{String(i + 1).padStart(2, "0")}</span>
+            <span>
+              <h3 class="text-2xl"><span class="sweep pb-0.5">{s.title}</span></h3>
+              <p class="mt-2.5 text-muted">{s.description}</p>
+              {s.priceFrom && <span class="tnum mt-3 block text-sm text-muted sm:hidden">From <span class="font-heading text-lg text-ink">{s.priceFrom}</span></span>}
+            </span>
+            <span class="hidden flex-col items-end justify-between gap-3 pt-1 sm:flex">
+              {s.priceFrom ? <span class="tnum whitespace-nowrap text-sm text-muted">From <span class="font-heading text-lg text-ink">{s.priceFrom}</span></span> : <span></span>}
+              <Icon name="arrow" class="size-5 text-ink/50 transition duration-500 ease-(--ease) group-hover:translate-x-1.5 group-hover:text-ink" />
+            </span>
+          </a>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
